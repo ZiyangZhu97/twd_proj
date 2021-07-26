@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
+from rango import views
 
 urlpatterns = [
+    path('', views.index, name='index'),    #这行是如果url只有xxx.com或127.0.0.1:8000 就调用views.index()这个view
+    path('rango/', include('rango.urls')),  #这行是如果url里有rango/，就让rango.urls去处理后面的url string
     path('admin/', admin.site.urls),
 ]
